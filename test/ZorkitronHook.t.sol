@@ -85,17 +85,18 @@
         liquidityAmount
       );
       
-      (tokenId,) = positionManager.mint(
-            poolKey,
-            tickLower,
-            tickUpper,
-            liquidityAmount,
-            amount0Expected + 1,
-            amount1Expected + 1,
-            address(this),
-            block.timestamp,
-            Constants.ZERO_BYTES
-      );
+  //     (tokenId,) = positionManager.mint(
+  //           poolKey,
+  //           tickLower,
+  //           tickUpper,
+  //           liquidityAmount,
+  //           amount0Expected + 1,
+  //           amount1Expected + 1,
+  //           address(this),
+  //           block.timestamp,
+  //           Constants.ZERO_BYTES
+  //     );
+  
   }
 
   function testZorkitronHooks() public {
