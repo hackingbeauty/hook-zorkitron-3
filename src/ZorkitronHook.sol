@@ -12,8 +12,7 @@ import {PositionInfo} from "v4-periphery/src/libraries/PositionInfoLibrary.sol";
 import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/src/types/PoolId.sol";
 import {Hooks} from "@uniswap/v4-core/src/libraries/Hooks.sol";
 import {IZorkitronRouter} from "./interfaces/IZorkitronRouter.sol";
-
-import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "@uniswap/v4-core/src/types/BeforeSwapDelta.sol";
+import "forge-std/console.sol";
 
 contract ZorkitronHook is BaseHook {
     address zorkitronRouterAddr;
@@ -51,7 +50,10 @@ contract ZorkitronHook is BaseHook {
         BalanceDelta feesAccrued,
         bytes calldata hookData
     ) internal override returns (bytes4, BalanceDelta) {
-        return (BaseHook.afterAddLiquidity.selector, delta);
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      console.log("INSIDE _afterAddLiquidity HOOK!!!!");
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      return (BaseHook.afterAddLiquidity.selector, delta);
     }
 
     function _afterRemoveLiquidity(
