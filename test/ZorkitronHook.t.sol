@@ -47,13 +47,12 @@
       
       (currency0, currency1) = deployCurrencyPair();
 
-      // Deploy the hook to an address with the correct flags
       address flags = address(
         uint160(
           Hooks.AFTER_ADD_LIQUIDITY_FLAG | Hooks.AFTER_REMOVE_LIQUIDITY_FLAG
         ) ^ (0x4444 << 144)   
       );
-      
+
       address zorkitronRouterAddr = deployCode("ZorkitronRouter.sol");
       bytes memory constructorArgs = abi.encode(poolManager, zorkitronRouterAddr);
 
@@ -85,17 +84,17 @@
         liquidityAmount
       );
       
-  //     (tokenId,) = positionManager.mint(
-  //           poolKey,
-  //           tickLower,
-  //           tickUpper,
-  //           liquidityAmount,
-  //           amount0Expected + 1,
-  //           amount1Expected + 1,
-  //           address(this),
-  //           block.timestamp,
-  //           Constants.ZERO_BYTES
-  //     );
+      (tokenId,) = positionManager.mint(
+            poolKey,
+            tickLower,
+            tickUpper,
+            liquidityAmount,
+            amount0Expected + 1,
+            amount1Expected + 1,
+            address(this),
+            block.timestamp,
+            Constants.ZERO_BYTES
+      );
   
   }
 
