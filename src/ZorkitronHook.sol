@@ -53,6 +53,13 @@ contract ZorkitronHook is BaseHook {
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       console.log("INSIDE _afterAddLiquidity HOOK!!!!");
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+      // Steps:
+      // 1 - Get NFT LP token, or Claim token or whatever
+      // 2 - Deposit the LP Tokens as collateral on AAVE (or some other protocol), in exchange for ETH
+      //     (i.e. allow LPs to borrow ETH against their shares in a Uniswap v4 pool)      
+      // 3 - Stake ETH into RockePool (or Lido), or your own Ethereum Validator Node
+
       return (BaseHook.afterAddLiquidity.selector, delta);
     }
 
@@ -64,6 +71,13 @@ contract ZorkitronHook is BaseHook {
         BalanceDelta feesAccrued,
         bytes calldata hookData
     ) internal override returns (bytes4, BalanceDelta) {
+        
+        // Steps:
+        // 1 - Unstake ETH that was staked/deposited into a Proof Of Stake Validator (or RocketPool, Lido, etc.)
+        // 2 - Transfer unstaked ETH into AAVE (or other), and withdraw LP tokens that were used as collateral
+        // 3 - Conver the LP Tokens back into either the NFT Liquidity Token or Claim Token
+        // 4 - Send the Profit to the LP, and send the withdrawal fee to YOUR address
+
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
 
