@@ -5,6 +5,7 @@ import {Hooks} from "@uniswap/v4-core/src/libraries/Hooks.sol";
 import {HookMiner} from "@uniswap/v4-periphery/src/utils/HookMiner.sol";
 import {BaseScript} from "./base/BaseScript.sol";
 import {ZorkitronHook} from "../src/ZorkitronHook.sol";
+import {ZorkitronRouter} from "../src/ZorkitronRouter.sol";
 
 /// @notice Mines the address and deploys the Counter.sol Hook contract
 contract DeployHookScript is BaseScript {
@@ -19,9 +20,14 @@ contract DeployHookScript is BaseScript {
         (address hookAddress, bytes32 salt) =
             HookMiner.find(CREATE2_FACTORY, flags, type(ZorkitronHook).creationCode, constructorArgs);
 
+        // Deploy the Zorkitron Router
+        vm.startBroadcast();
+        ZorkitronRouter zorkitronRouter = new ZorkitronRouter();
+        vm.stopBroadcast();
+
         // Deploy the hook using CREATE2
         vm.startBroadcast();
-        ZorkitronHook hook = new ZorkitronHook{salt: salt}(poolManager);
+        ZorkitronHook hook = new ZorkitronHook{salt: salt}(poolManager, positionManager, zorkitronRouter);
         vm.stopBroadcast();
 
         require(address(hook) == hookAddress, "DeployHookScript: Hook Address Mismatch");

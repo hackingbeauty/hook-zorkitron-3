@@ -54,7 +54,7 @@
       );
 
       address zorkitronRouterAddr = deployCode("ZorkitronRouter.sol");
-      bytes memory constructorArgs = abi.encode(poolManager, zorkitronRouterAddr);
+      bytes memory constructorArgs = abi.encode(poolManager, positionManager, zorkitronRouterAddr);
 
       console.log("----- zorkitronRouterAddr ------");
       console.logAddress(zorkitronRouterAddr);
