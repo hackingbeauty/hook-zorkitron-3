@@ -69,6 +69,8 @@
       // Create the pool
       poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(hook));
       poolId = poolKey.toId();
+
+      // bytes memory hookData = abi.encode(block.timestamp);
       poolManager.initialize(poolKey, Constants.SQRT_PRICE_1_1);
 
       // Provide full-range liquidity to the pool

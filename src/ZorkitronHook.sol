@@ -17,15 +17,15 @@ import "forge-std/console.sol";
 
 contract ZorkitronHook is BaseHook {
     IPositionManager posm;
-    IZorkitronRouter zorkitronRouter;
+    address zorkitronRouterAddr;
 
     constructor(
       IPoolManager _poolManager,
       IPositionManager _posm,
-      IZorkitronRouter _zorkitronRouter
+      address _zorkitronRouterAddr
     ) BaseHook(_poolManager) {
       posm = _posm;
-      zorkitronRouter = _zorkitronRouter;
+      zorkitronRouterAddr = _zorkitronRouterAddr;
     }
 
     function getHookPermissions() public pure override returns (Hooks.Permissions memory) {

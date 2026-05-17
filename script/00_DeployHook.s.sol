@@ -27,7 +27,7 @@ contract DeployHookScript is BaseScript {
 
         // Deploy the hook using CREATE2
         vm.startBroadcast();
-        ZorkitronHook hook = new ZorkitronHook{salt: salt}(poolManager, positionManager, zorkitronRouter);
+        ZorkitronHook hook = new ZorkitronHook{salt: salt}(poolManager, positionManager, address(zorkitronRouter));
         vm.stopBroadcast();
 
         require(address(hook) == hookAddress, "DeployHookScript: Hook Address Mismatch");
