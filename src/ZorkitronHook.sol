@@ -59,9 +59,27 @@ contract ZorkitronHook is BaseHook {
         BalanceDelta feesAccrued,
         bytes calldata hookData
     ) internal override returns (bytes4, BalanceDelta) {
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      console.log("INSIDE _afterAddLiquidity HOOK!!!!");
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log("INSIDE _afterAddLiquidity HOOK!!!!");
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        uint256 tokenId = uint256(params.salt);
+        console.log('---- tokenId ----');
+        console.log(tokenId);
+        
+        IZorkitronRouter(zorkitronRouterAddr).depositLiquidity(tokenId);
+
+        (PoolKey memory poolKey, PositionInfo positionInfo) = posm.getPoolAndPositionInfo(tokenId);
+
+        uint128 liquidity = posm.getPositionLiquidity(tokenId);
+
+        console.log("---------------------------------");        
+        console.log("poolKey iz:");
+        console.logBytes32(positionInfo.poolId());
+        console.log("liquidity :");
+        console.log(liquidity);
+        console.log("---------------------------------");        
+
 
       // Steps:
       // 1 - Get NFT LP token, or Claim token or whatever

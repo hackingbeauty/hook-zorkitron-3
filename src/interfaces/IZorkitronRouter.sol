@@ -4,8 +4,8 @@ pragma solidity ^0.8.26;
 import {ZorkitronHook} from "../ZorkitronHook.sol";
 
 interface IZorkitronRouter {
-    function addLiquidity(
-        address owner
+    function depositLiquidity(
+        uint256 tokenId
         // address _currency0,
         // address _currency1
         // int24 tickLower,

@@ -97,13 +97,17 @@
             block.timestamp,
             Constants.ZERO_BYTES
       );
+
+      console.log('---- after calling positionManager.mint(), the tokenId iz ------');
+      console.log(tokenId);
   
   }
 
   function testZorkitronHooks() public {
-    console.log("====================================");
-    console.log("INSIDE _afterAddLiquidity");
-    console.log("====================================");
+    assertEq(true, true);
+  }
+  
+  function testZorkitronHooksTwo() public {
     assertEq(true, true);
   }
 
